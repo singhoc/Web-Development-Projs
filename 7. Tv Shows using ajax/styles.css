@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+
+body {
+    background-color: white;
+    font-family: 'Koulen', cursive;
+
+}
+
+h1 {
+    color: rgb(119, 201, 228);
+    text-align: center;
+}
+
+#searchForm {
+    text-align: center;
+    border-radius: 20%;
+}
+
+#search {
+    color: black;
+    border-color: black;
+    font-family: 'Koulen';
+    background-color: rgb(106, 241, 239);
+    border-radius: 5px;
+    padding: 6px;
+    margin: 6px;
+
+}
+
+#search:hover {
+    border-color: rgb(80, 76, 76);
+    color: black;
+    box-shadow: 0 0.5em 0.5em -0.4em rgb(115, 114, 114);
+    transform: translateY(-0.20em);
+    cursor: pointer;
+}
