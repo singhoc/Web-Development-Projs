@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0",
+    "franc": "^5.0.0",
+    "langs": "^2.0.0"
+  },
+  "name": "language-detector",
+  "version": "1.0.0",
+  "description": "detects language in cmd argument",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "minta",
+  "license": "ISC"
+}

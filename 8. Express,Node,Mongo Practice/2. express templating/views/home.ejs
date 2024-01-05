@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= name %>
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <h1>Homepage of <%= name %>
+    </h1>
+    <h2>
+        <%= description %>
+    </h2>
+    <p>
+        <%= subscribers %>
+    </p>
+    <hr>
+
+    <% for(let post of posts){ %>
+        <article>
+            <h3>
+                <%= post.title %>
+            </h3>
+            <h4>
+                <%= post.author %>
+            </h4>
+            <% if(post.img) { %>
+                <img src="<%= post.img %>" alt="">
+                <% } %>
+        </article>
+
+        <% } %>
+
+</body>
+
+</html>
