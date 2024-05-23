@@ -44,7 +44,6 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
-//for checking and passing any flash messages
 
 
 app.use(passport.initialize());
@@ -52,22 +51,12 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));//for authentication of user
 passport.serializeUser(User.serializeUser());//for storing users in session
-
 passport.deserializeUser(User.deserializeUser());//for removing 
 
-// //fake user
-// app.get('/fakeuser', async (req, res) => {
-//     const user = new User({
-//         email: 'mintasingh@gmail.com',
-//         username: 'mints'
-//     })
-//     const newUs er = await User.register(user, 'password');
-//     res.send(newUser);
-// })
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success');
+    res.locals.success = req.flash('success');//for checking and passing any flash messages
     res.locals.error = req.flash('error');
     next();
 })
