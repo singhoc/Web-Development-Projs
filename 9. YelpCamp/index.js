@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();//if we are in development this package will be required!!
+}
+
+
 const express = require('express');
 const app = express();
 const path = require('path');
