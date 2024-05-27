@@ -7,15 +7,30 @@ const imageSchema = new Schema({
     filename: String,
 });
 
-//we dont need to store virtual on the schema like virtual property
+//we dont need to store on the schema, its like a virtual property
 imageSchema.virtual('thumbnail').get(function () {
-    return this.url.replace('/upload', '/upload/w_200')
+    return this.url.replace('/upload', '/upload/c_fit,h_250,w_250')
+})
+
+imageSchema.virtual('display').get(function () {
+    return this.url.replace('/upload', '/upload/c_scale,h_350,w_400')
 })
 
 const CampgroundSchema = new Schema({
     title: String,
     price: Number,
     description: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     location: String,
     images: [imageSchema],
     author: {
