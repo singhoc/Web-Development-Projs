@@ -18,6 +18,8 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
+const dbURL= 'mongodb://localhost:27017/yelp-camp';//process.env.DB_URL;//
 
 const campgroundRoutes = require('./routes/campground'); //for campground routes
 const reviewRoutes = require('./routes/reviews'); //for reviews routes
@@ -26,7 +28,7 @@ const userRoutes = require('./routes/users');//for users login routes
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/yelp-camp');
+    await mongoose.connect(dbURL);//dbURL for connecting to mongo cloud
     console.log("connected to mongoose");
 }
 const db = mongoose.connection;
@@ -40,7 +42,21 @@ app.use(methodOverride('_method'));//method overide for delete, update
 app.use(express.static(path.join(__dirname, 'public')));//serving static files
 app.use(mongoSanitize());//for protection against mongo injection
 
+const store = MongoStore.create({
+    mongoUrl: dbURL,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'this should be a better secret!'
+    }
+});
+
+store.on("error",(e)=>{
+    
+    console.log("Session store error",e);
+})
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'this should be a better secret',
     resave: false,
